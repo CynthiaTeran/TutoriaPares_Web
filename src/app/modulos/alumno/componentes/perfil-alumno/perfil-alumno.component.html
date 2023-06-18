@@ -1,0 +1,81 @@
+<div class="row my-5">
+    <!--Información Personal-->
+    <div class="col-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title fw-bold">Información Personal</h4>
+                <div class="card-text my-4">
+                    <span class="fw-bold">IDENTIFICADOR</span>
+                    <p>{{ this.aservicio.alumnoActual.alumno_id }}</p>
+                    <span class="fw-bold">NOMBRES</span>
+                    <p>{{ this.aservicio.alumnoActual.alumno_nombre }}</p>
+                    <span class="fw-bold">APELLIDOS</span>
+                    <p>{{ this.aservicio.alumnoActual.alumno_apellidos }}</p>
+                    <span class="fw-bold">TELÉFONO</span>
+                    <p>{{ this.aservicio.alumnoActual.alumno_telefono }}</p>
+                    <span class="fw-bold">CORREO</span>
+                    <p>{{ this.aservicio.alumnoActual.alumno_correo }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Información académica-->
+    <div class="col-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title fw-bold">Información Académica</h4>
+                <div class="card-text my-4">
+                    <span class="fw-bold">CARRERA</span>
+                    <p>{{this.infoG.carrera_nombre}}</p>
+                    <span class="fw-bold">PLAN DE ESTUDIOS</span>
+                    <p>{{ this.infoG.plan_fecha_inicio | date : 'yyyy'}}</p>
+                    <span class="fw-bold">SEMESTRE ACTUAL</span>
+                    <p>{{ this.aservicio.alumnoActual.alumno_semestre }}</p>
+                    <span class="fw-bold">GRUPO</span>
+                    <p>{{ this.aservicio.alumnoActual.alumno_grupo }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row my-5">
+    <!--Información Centro-->
+    <div class="col-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title fw-bold">Centro Académico</h4>
+                <div class="card-text my-4">
+                    <span class="fw-bold">NOMBRE DEL CENTRO</span>
+                    <p>{{ this.infoG.centro_nombre }}</p>
+                    <span class="fw-bold">ACRÓNIMO</span>
+                    <p>{{ this.infoG.centro_acronimo }}</p>
+                    <span class="fw-bold">DIRECCIÓN</span>
+                    <p>{{ this.infoG.centro_direccion }}</p>
+                    <span class="fw-bold">TELÉFONO</span>
+                    <p>{{ this.infoG.centro_telefono }}</p>
+                    <span class="fw-bold">EXTENSION</span>
+                    <p>{{ this.infoG.centro_extension }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Información Carrera-->
+    <div class="col-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h4 class="card-title fw-bold">Carrera</h4>
+                <div class="card-text my-4">
+                    <span class="fw-bold">NOMBRE DE LICENCIATURA</span>
+                    <p>{{ this.infoG.carrera_nombre }}</p>
+                    <span class="fw-bold">DURACIÓN/CANTIDAD DE SEMESTRES</span>
+                    <p>{{ this.infoG.carrera_duracion }}</p>
+                    <span class="fw-bold">MODALIDAD</span>
+                    <p>{{ this.infoG.carrera_modalidad }}</p>
+                    <span class="fw-bold">OBJETIVO</span>
+                    <p>{{ this.infoG.carrera_objetivo }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

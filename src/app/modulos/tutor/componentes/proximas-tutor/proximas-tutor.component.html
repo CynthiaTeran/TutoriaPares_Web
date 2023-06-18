@@ -1,0 +1,82 @@
+<div *ngFor="let solicitud of solicitudes">
+    <div class="card-body" class="card text-white bg-primary mb-3">
+        <div class="card-body">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-2 col-12 align-self-center">
+                        <img src="/assets/img/usuario-noimg.png" class="card-img-top img-thumbnail" alt="..."
+                            style="border-radius: 50%;">
+                    </div>
+                    <div class="col-md-3 col-12 align-self-center">
+                        <h4 class="fst-italic text-secondary">Nombre del alumno</h4>
+                        <h4>{{solicitud.tutor_nombre_completo.toUpperCase()}}</h4>
+                        <h4 class="fst-italic text-secondary">Materia</h4>
+                        <h4>{{solicitud.materia_nombre.toUpperCase()}}</h4>
+                    </div>
+                    <div class="col-md-3 col-12 align-self-center">
+                        <h3 class="text-success fw-bold">PROGRAMADA</h3>
+                        <h4 class="fst-italic text-secondary">Fecha y Hora</h4>
+                        <h4>{{solicitud.solicitud_fecha_programacion | date : 'yyyy-MM-dd H:mm:ss'}}</h4>
+                        <h4 class="fst-italic text-secondary">Sitio / Ubicación </h4>
+                        <h4>{{solicitud.solicitud_lugar}}</h4>
+                    </div>
+                    <div class="col-md-4 col-12 align-self-center">
+                        <div class="d-grid d-xl-block">
+                            <button class="btn btn-light btn-lg m-2" data-bs-toggle="modal"
+                                data-bs-target="#modalEvidencia"
+                                (click)="detallesSolicitud(solicitud)">EVIDENCIA</button>
+                            <button class="btn btn-danger btn-lg m-2"
+                                (click)="cancelarSolicitud(solicitud)">CANCELAR</button>
+                            <button class="btn btn-info btn-lg m-2" data-bs-toggle="modal"
+                                data-bs-target="#modalDetallesTutor"
+                                (click)="detallesSolicitud(solicitud)">DETALLES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-detalles-form-tutor [solicitudDet]="solicitudProxima"></app-detalles-form-tutor>
+
+
+<!--Modal para evidencias-->
+<div class="modal fade " id="modalEvidencia" tabindex="-1" aria-labelledby="modalEvidencia" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEvidenciaNombre">DETALLES DE SOLICITUD</h5>
+            </div>
+            <div class="modal-body">
+                <div class="my-2">
+                    <h5 class="fw-bold">Calificación de asesoría</h5>
+                    <p>¡La asesoría a concluido!. Para nosotros es importante llevar un control y verificar que las
+                        asesorías se hayan realizado.</p>
+                    <form [formGroup]="formEvidencia" (ngSubmit)="evidenciaSolicitud()" class="needs-validation"
+                        novalidate>
+                        <div class="form-group mb-3">
+                            <label for="formFile" class="form-label">Archivo</label>
+                            <input class="form-control" type="file" id="formFile" (change)="enCambioArchivo($event)"
+                                formControlName="archivo"
+                                [ngClass]="formEvidencia.controls['archivo'].valid ? 'is-valid' : '' + formEvidencia.controls['archivo'].invalid && formEvidencia.controls['archivo'].touched ? 'is-invalid' : ''" />
+                            <div class="invalid-feedback"
+                                *ngIf="formEvidencia.controls['archivo'].invalid && formEvidencia.controls['archivo'].touched">
+                                <div *ngIf="this.formEvidencia.get('archivo')?.errors?.['extension']">
+                                    La extensión para el archivo debe ser png, jpeg, jpg, pdf, docx.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-secondary btn-block" [disabled]="!formEvidencia.valid"
+                                data-bs-dismiss="modal">Subir Evidencia</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

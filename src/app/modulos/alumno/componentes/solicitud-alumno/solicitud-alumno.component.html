@@ -1,0 +1,82 @@
+<h3>Solicitud</h3>
+<div>
+  <form [formGroup]="formSolicitud" (ngSubmit)="enviarSolicitud()" class="needs-validation" novalidate>
+    <!--Campo materia-->
+    <div class="form-group mb-3">
+      <label class="form-label">Materia</label>
+      <select class="form-select" id="floatingMateria" formControlName="materia" 
+      [ngClass]="formSolicitud.controls['materia'].valid ? 'is-valid' : '' + formSolicitud.controls['materia'].invalid && formSolicitud.controls['materia'].touched ? 'is-invalid' : ''">
+        <option *ngFor="let materia of materias" [ngValue]="materia.materia_id">
+          {{ materia.materia_nombre }}
+        </option>
+      </select>
+      <div class="invalid-feedback" *ngIf="formSolicitud.controls['materia'].invalid && formSolicitud.controls['materia'].touched">
+        <div *ngIf="formSolicitud.controls['materia'].errors?.['required']">
+          Es necesario elegir una materia.
+        </div>
+      </div>
+    </div>
+    <!--Campo tema-->
+    <div class="form-group mb-3">
+      <label class="form-label">Tema</label>
+      <input type="text" class="form-control" id="floatingTema" formControlName="tema" 
+      [ngClass]="formSolicitud.controls['tema'].valid ? 'is-valid' : '' + formSolicitud.controls['tema'].invalid && formSolicitud.controls['tema'].touched ? 'is-invalid' : ''" 
+      placeholder="Tema"/>
+      <div class="invalid-feedback" *ngIf="formSolicitud.controls['tema'].invalid && formSolicitud.controls['tema'].touched">
+        <div *ngIf="formSolicitud.controls['tema'].errors?.['required']">
+          Es necesario un tema para la solicitud.
+        </div>
+      </div>
+    </div>
+    <!--Campo descripcion-->
+    <div class="form-group mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea type="text" class="form-control"formControlName="descripcion" 
+      [ngClass]="formSolicitud.controls['descripcion'].valid ? 'is-valid' : '' + formSolicitud.controls['descripcion'].invalid && formSolicitud.controls['descripcion'].touched ? 'is-invalid' : ''" 
+      style="min-height: 150px"></textarea>
+      <div class="invalid-feedback" *ngIf="formSolicitud.controls['descripcion'].invalid && formSolicitud.controls['descripcion'].touched">
+        <div *ngIf="formSolicitud.controls['descripcion'].errors?.['required']">
+          Es necesaria una descripción para la solicitud.
+        </div>
+      </div> 
+    </div>
+    <div class="row mb-3">
+      <!--Campo urgencia-->
+      <div class="form-group col-6">
+        <label class="form-label">Urgencia</label>
+        <select class="form-select" formControlName="urgencia" 
+        [ngClass]="formSolicitud.controls['urgencia'].valid ? 'is-valid' : '' + formSolicitud.controls['urgencia'].invalid && formSolicitud.controls['urgencia'].touched ? 'is-invalid' : ''">
+          <option *ngFor="let urgencia of urgencias" [ngValue]="urgencia">
+            {{ urgencia == 'U' ? 'URGENTE' : 'PUEDE ESPERAR' }}
+          </option>
+        </select>
+        <div class="invalid-feedback" *ngIf="formSolicitud.controls['urgencia'].invalid && formSolicitud.controls['urgencia'].touched">
+          <div *ngIf="formSolicitud.controls['urgencia'].errors?.['required']">
+          Es necesario elegir la urgencia de la asesoria.
+          </div>
+        </div>
+      </div>
+      <!--Campo modalidad-->
+      <div class="form-group col-6">
+        <label class="form-label">Modalidad</label>
+        <select class="form-select" formControlName="modalidad" 
+        [ngClass]="formSolicitud.controls['modalidad'].valid ? 'is-valid' : '' + formSolicitud.controls['modalidad'].invalid && formSolicitud.controls['modalidad'].touched ? 'is-invalid' : ''">
+          <option *ngFor="let modalidad of modalidades" [ngValue]="modalidad">
+            {{ modalidad == 'P' ? 'PRESENCIAL' : 'EN LÍNEA' }}
+          </option>
+        </select>
+        <div class="invalid-feedback" *ngIf="formSolicitud.controls['modalidad'].invalid && formSolicitud.controls['modalidad'].touched">
+          <div *ngIf="formSolicitud.controls['modalidad'].errors?.['required']">
+            Es necesario elegir una modalidad.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group text-end">
+        <button type="submit" class="btn btn-secondary btn-block" [disabled]="!formSolicitud.valid">
+          Enviar solicitud
+        </button>
+      </div>
+  </form>
+</div>
+

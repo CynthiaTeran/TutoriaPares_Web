@@ -1,0 +1,33 @@
+<div *ngFor="let solicitud of solicitudes">
+    <div class="card-body" class="card text-white bg-primary mb-3">
+        <div class="card-body">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-2 col-12 align-self-center">
+                        <img src="/assets/img/usuario-noimg.png" class="card-img-top img-thumbnail" alt="..."
+                            style="border-radius: 50%;">
+                    </div>
+                    <div class="col-md-4 col-12 align-self-center">
+                        <h4 class="fst-italic text-secondary">Nombre del alumno</h4>
+                        <h4>{{solicitud.tutor_nombre_completo.toUpperCase()}}</h4>
+                        <h4 class="fst-italic text-secondary">Materia</h4>
+                        <h4 class="fw-bold">{{solicitud.materia_nombre.toUpperCase()}}</h4>
+                    </div>
+                    <div class="col-md-6 col-12 align-self-center">
+                        <h3 class="text-danger fw-bold" *ngIf="solicitud.solicitud_urgencia == 'U'">URGENTE</h3>
+                        <h3 class="text-warning fw-bold" *ngIf="solicitud.solicitud_urgencia == 'E'">PUEDE ESPERAR</h3>
+                        <div class="d-grid d-xl-block">
+                            <button class="btn btn-success btn-lg m-2"
+                                (click)="aceptarSolicitud(solicitud.solicitud_id)">ACEPTAR</button>
+                            <button class="btn btn-danger btn-lg m-2"
+                                (click)="rechazarSolicitud(solicitud.solicitud_id)">RECHAZAR</button>
+                            <button class="btn btn-info btn-lg m-2" data-bs-toggle="modal"
+                                data-bs-target="#modalDetallesTutor" (click)="detallesSolicitud(solicitud)">DETALLES</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-detalles-form-tutor [solicitudDet]="solicitudSolicitudes"></app-detalles-form-tutor>

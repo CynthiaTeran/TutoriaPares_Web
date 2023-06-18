@@ -1,0 +1,67 @@
+<div *ngIf="this.aservicio.alumnoActual.tutor_id != 0">
+    <div class="row my-5">
+        <!--Información Tutor-->
+        <div class="col-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Información de Tutor</h4>
+                    <div class="card-text my-4">
+                        <span class="fw-bold">IDENTIFICADOR</span>
+                        <p>{{ this.aservicio.tutorActual.tutor_id }}</p>
+                        <span class="fw-bold">PROMEDIO</span>
+                        <p>{{ this.aservicio.tutorActual.tutor_promedio }}</p>
+                        <span class="fw-bold">FECHA INSCRIPCIÓN</span>
+                        <p>{{ this.aservicio.tutorActual.tutor_fecha_inscripcion | date: 'yyyy-MM-dd'}}</p>
+                        <span class="fw-bold">PROGRAMA</span>
+                        <p>{{ this.aservicio.tutorActual.tutor_programa == 'S' ? 'Servicio Social' : 'Voluntariado' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Información de las materias que da-->
+        <div class="col-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">Información de Materias Asesoradas</h4>
+                    <div class="card-text my-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">IDENTIFICADOR</th>
+                                    <th scope="col">MATERIA</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let materia of materias">
+                                <tr>
+                                    <td>{{ materia.materia_id }}</td>
+                                    <td>{{ materia.materia_nombre }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="this.aservicio.alumnoActual.tutor_id == 0">
+    <div class="row my-5">
+        <!--Información Acerca de las Tutorías de Pares-->
+        <div class="col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title fw-bold">¿Deseas ser parte del Programa Institucional de Tutoría?</h4>
+                    <div class="card-text my-4">
+                        <span class="fw-bold">TUTORÍA DE PARES</span>
+                        <p>Te recordamos que otro de los principales actores en la tutoría es un compañero estudiante de
+                            semestres avanzados mejor conocido como tutor par, quien puede asesorarte en la comprensión
+                            de contenidos de tus materias, así como en todo lo relacionado con tu incorporación a la
+                            vida universitaria para facilitar tu adaptación a nuestra máxima casa de estudios.</p>
+                        <a class="card-link" (click)="this.router.navigate(['/registro'])">Registro como Tutor Par</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

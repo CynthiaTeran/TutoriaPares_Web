@@ -1,0 +1,86 @@
+<!-- Modal fechas-->
+<div class="modal fade " id="modalAgendaTutor" tabindex="-1" aria-labelledby="modalAgendaTutor" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAgendaTutorNombre">DETALLES DE PROGRAMACIÓN</h5>
+            </div>
+            <div class="modal-body">
+                <div class="my-2">
+                    <!--Datos de programación-->
+                    <h5 class="fw-bold">Datos de Programación</h5>
+                    <form [formGroup]="formAgenda" (ngSubmit)="agendarSolicitud()" class="needs-validation" novalidate>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Fecha</label>
+                            <input type="datetime-local" min="2023-06-17" class="form-control" formControlName="fecha"
+                                [ngClass]="formAgenda.controls['fecha'].valid ? 'is-valid': '' + formAgenda.controls['fecha'].invalid && formAgenda.controls['fecha'].touched? 'is-invalid': ''" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Sitio</label>
+                            <input type="text" class="form-control" formControlName="sitio"
+                                [ngClass]="formAgenda.controls['sitio'].valid ? 'is-valid': '' + formAgenda.controls['sitio'].invalid && formAgenda.controls['sitio'].touched? 'is-invalid': ''" />
+                        </div>
+                        <div class="my-2">
+                            <!--Datos de Invitados-->
+                            <h5 class="fw-bold">Datos de Invitados</h5>
+                            <form [formGroup]="formInvita" (ngSubmit)="agregarInvitado()" class="needs-validation" novalidate>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">ID</label>
+                                    <input type="number" class="form-control" formControlName="id" [ngClass]="
+                                    formInvita.controls['id'].valid
+                                        ? 'is-valid'
+                                        : '' + formInvita.controls['id'].invalid &&
+                                        formInvita.controls['id'].touched
+                                        ? 'is-invalid'
+                                        : ''
+                                    " placeholder="Escriba un ID" />
+                                    <div class="invalid-feedback" *ngIf="
+                                    formInvita.controls['id'].invalid &&
+                                    formInvita.controls['id'].touched
+                                        ? 'is-invalid'
+                                        : ''
+                                    ">
+                                        <div *ngIf="formInvita.get(['id'])?.errors?.['pattern']">
+                                            El ID debe ser un número de 6 dígitos
+                                        </div>
+                                        <div *ngIf="formInvita.get(['id'])?.errors?.['required']">
+                                            Debe ingresar un ID, para poder dar clic en el botón "Agregar".
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3 text-end">
+                                    <button type="submit" class="btn btn-secondary btn-block"
+                                        [disabled]="!formInvita.valid">Agregar</button>
+                                </div>
+                                <div *ngIf="this.alumnos_invitados.length != 0">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Invitado</th>
+                                            <th scope="col"></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody *ngFor="let alumno of alumnos_invitados">
+                                          <tr>
+                                            <td scope="row">{{ alumno }}</td>
+                                            <td class="text-center"><button type="button" class="btn btn-info" (click)="eliminarInvitado(alumno)">Borrar</button></td>
+                                          </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-secondary btn-block"
+                                [disabled]="!formAgenda.valid" data-bs-dismiss="modal">Programar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

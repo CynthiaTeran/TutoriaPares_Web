@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg bg-light">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#">
+            <img src="assets/img/logouaa.png" alt="..." width="100px" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Links para módulos-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/alumno']">Alumno</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/tutor']">Tutor</a>
+                </li>
+            </ul>
+        </div>
+
+        <!--Perfil de usuario-->
+        <div class="d-flex align-items-center">
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img class="user-image" src="assets/img/usuario-noimg.png" alt="" height="35" width="35">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" [routerLink]="['/perfil']">Perfil</a></li>
+                    <div class="dropdown-divider"></div>
+                    <li><a class="dropdown-item" (click)="cerrar()">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</nav>

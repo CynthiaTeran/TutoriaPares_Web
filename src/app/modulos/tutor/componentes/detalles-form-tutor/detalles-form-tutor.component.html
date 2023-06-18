@@ -1,0 +1,75 @@
+<div class="modal fade " id="modalDetallesTutor" tabindex="-1" aria-labelledby="modalDetallesTutor"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDetallesNombre">DETALLES DE SOLICITUD</h5>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="solicitudDet.tutor_nombre_completo != null">
+                    <div class="my-2">
+                        <span *ngIf="solicitudDet.solicitud_fecha_programacion == null else AlumnoFijo"><h5 class="fw-bold">Datos del Alumno Interesado</h5></span>
+
+                        <label class="form-label">Nombre</label>
+                        <input type="text" value="{{solicitudDet.tutor_nombre_completo.toUpperCase()}}"
+                            class="form-control" readonly>
+
+                        <label class="form-label">Contacto</label>
+                        <input type="text"
+                            value="{{solicitudDet.alumno_telefono}} / {{solicitudDet.alumno_correo.toUpperCase()}}"
+                            class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="my-2">
+                    <h5 class="fw-bold">Datos de Asesoría</h5>
+                    <label class="form-label">Materia</label>
+                    <input type="text" value=" {{solicitudDet.materia_nombre.toUpperCase()}}" class="form-control"
+                        readonly>
+
+                    <label class="form-label">Tema</label>
+                    <input type="text" value="{{solicitudDet.solicitud_tema.toUpperCase()}}" class="form-control"
+                        readonly>
+
+                    <label class="form-label">Descripción de necesidades</label>
+                    <textarea type="text" value="{{solicitudDet.solicitud_descripcion.toUpperCase()}}"
+                        class="form-control" readonly></textarea>
+
+                    <label class="form-label">Fecha de solicitud</label>
+                    <input type="text" value="{{solicitudDet.solicitud_fecha | date : 'yyyy-MM-dd H:mm:ss' }}" class="form-control" readonly>
+
+                    <label class="form-label">Urgencia</label>
+                    <input type="text"
+                        value="{{solicitudDet.solicitud_urgencia == 'U' ? 'URGENTE': 'PUEDE ESPERAR'}}"
+                        class="form-control" readonly>
+
+                    <label class="form-label">Modalidad</label>
+                    <input type="text"
+                        value="{{solicitudDet.solicitud_modalidad == 'P' ? 'PRESENCIAL': 'EN LÍNEA'}}"
+                        class="form-control" readonly>
+                </div>
+
+
+                <div *ngIf="solicitudDet.solicitud_fecha_programacion != null">
+                    <div class="my-2">
+                        <h5 class="fw-bold">Datos de Programación</h5>
+                        <label class="form-label">Fecha agendada</label>
+                        <input type="text" value=" {{solicitudDet.solicitud_fecha_programacion.toUpperCase() | date : 'yyyy-MM-dd H:mm:ss' }}" class="form-control"
+                            readonly>
+
+                        <label class="form-label">Sitio</label>
+                        <input type="text" value="{{solicitudDet.solicitud_lugar}}" class="form-control"
+                            readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #AlumnoFijo>
+    <h5 class="fw-bold">Datos del Alumno Asesorado</h5>
+</ng-template>
