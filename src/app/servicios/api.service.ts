@@ -8,7 +8,8 @@ import { AlumnoResponse } from '../modelos/alumno.model';
 })
 export class APIService {
 
-  base: string = "http://localhost:3000/";
+  base: string = "http://25.3.160.173:3000/";
+  //base: string = "http://25.1.150.17:3000/";
 
   constructor(public httpClient: HttpClient) { }
 
