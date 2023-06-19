@@ -3,28 +3,16 @@
     <!--Campo promedio-->
     <div class="form-group mb-3">
         <label class="form-label">Promedio</label>
-        <input type="number" class="form-control"formControlName="promedio" 
-        [ngClass]="formTutor.controls['promedio'].valid ? 'is-valid' : '' + formTutor.controls['promedio'].invalid && formTutor.controls['promedio'].touched ? 'is-invalid' : ''" >
-        <div class="invalid-feedback" *ngIf="formTutor.controls['promedio'].invalid && formTutor.controls['promedio'].touched">
-          <div *ngIf="formTutor.controls['promedio'].errors?.['required']">
-            Es necesario un promedio 0-10.
-          </div>
-        </div> 
+        <input type="number" class="form-control"formControlName="promedio">
     </div>
     <!--Campo programa-->
     <div class="form-group mb-3">
         <label class="form-label">Programa</label>
-        <select class="form-select" formControlName="programa" 
-        [ngClass]="formTutor.controls['programa'].valid ? 'is-valid' : '' + formTutor.controls['programa'].invalid && formTutor.controls['programa'].touched ? 'is-invalid' : ''">
+        <select class="form-select" formControlName="programa" >
           <option *ngFor="let programa of programas" [ngValue]="programa">
             {{ programa == 'V' ? 'VOLUNTARIADO' : 'SERVICIO SOCIAL' }}
           </option>
         </select>
-        <div class="invalid-feedback" *ngIf="formTutor.controls['programa'].invalid && formTutor.controls['programa'].touched">
-          <div *ngIf="formTutor.controls['programa'].errors?.['required']">
-          DEbe elegir un programa para incorporarse.
-          </div>
-        </div>
     </div>
     <div class="my-2">
         <!--Datos de Materias-->
@@ -33,43 +21,19 @@
             <!--Campo materia-->
             <div class="form-group mb-3">
                 <label class="form-label">Materia</label>
-                <select class="form-select" id="floatingMateria" formControlName="materia" 
-                [ngClass]="formMateriaT.controls['materia'].valid ? 'is-valid' : '' + formMateriaT.controls['materia'].invalid && formMateriaT.controls['materia'].touched ? 'is-invalid' : ''">
-                <option *ngFor="let materia of materias" [ngValue]="materia.materia_id">
+                <select class="form-select" id="floatingMateria" formControlName="materia">
+                  <option *ngFor="let materia of materias" [ngValue]="materia.materia_id">
                     {{ materia.materia_nombre }}
-                </option>
+                  </option>
                 </select>
-                <div class="invalid-feedback" *ngIf="formMateriaT.controls['materia'].invalid && formMateriaT.controls['materia'].touched">
-                    <div *ngIf="formMateriaT.controls['materia'].errors?.['required']">
-                        Es necesario elegir una materia.
-                    </div>
-                </div>
             </div>
             <!--Campo Promedio por Materia-->
             <div class="form-group mb-3">
                 <label class="form-label">Calificación</label>
-                <input type="number" min="0" max="10" class="form-control" formControlName="prom_materia"  [(ngModel)]="calificacion" value="{{calificacion}}" [ngClass]="
-                formMateriaT.controls['prom_materia'].valid
-                    ? 'is-valid'
-                    : '' + formMateriaT.controls['prom_materia'].invalid &&
-                    formMateriaT.controls['prom_materia'].touched
-                    ? 'is-invalid'
-                    : ''
-                " placeholder="Escriba una puntuación" />
-                <div class="invalid-feedback" *ngIf="
-                formMateriaT.controls['prom_materia'].invalid &&
-                formMateriaT.controls['prom_materia'].touched
-                    ? 'is-invalid'
-                    : ''
-                ">
-                    <div *ngIf="formMateriaT.get(['prom_materia'])?.errors?.['required']">
-                        Debe ingresar el promedio obtenido en su materia.
-                    </div>
-                </div>
+                <input type="number" min="0" max="10" class="form-control" formControlName="prom_materia"  [(ngModel)]="calificacion" value="{{calificacion}}" placeholder="Escriba una puntuación" />
             </div>
             <div class="form-group mb-3 text-end">
-                <button type="submit" class="btn btn-secondary btn-block"
-                    [disabled]="!formMateriaT.valid">Agregar</button>
+                <button type="submit" class="btn btn-secondary btn-block">Agregar</button>
             </div>
             <div *ngIf="this.materias_lista.length != 0">
                 <table class="table">

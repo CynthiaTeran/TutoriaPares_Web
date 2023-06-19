@@ -13,8 +13,12 @@ export class PermisoTutorGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (!this.servicioAut.obtenerAutentificacionTutor) {
-        this.router.navigate(['registro']);
+      if (!this.servicioAut.autentificacion) { //Si no ha iniciado sesión
+        this.router.navigate(['inicio-sesion']);
+      }else{
+        if(!this.servicioAut.obtenerAutentificacionTutor) {
+          this.router.navigate(['registro']);
+        }
       }
       return true;
   }

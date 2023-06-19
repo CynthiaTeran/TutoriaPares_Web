@@ -27,12 +27,11 @@ export class FinalizadasTutorComponent implements OnInit {
 
   ngOnInit(): void {
     //Recuperar las solicitudes para tutor-proximas
-    this.api
-      .getJSON('finalizadasTutor/' + this.authservicio.alumnoActual.tutor_id)
-      .subscribe((res: any) => {
-        this.solicitudResponse = res as SolicitudResponse;
-        this.solicitudes = this.solicitudResponse.array;
-      });
+    this.api.getJSON('finalizadasTutor/' + this.authservicio.alumnoActual.tutor_id).subscribe((res: any) => {
+      this.solicitudResponse = res as SolicitudResponse;
+      this.solicitudes = this.solicitudResponse.array;
+      console.log(this.solicitudes);
+    });
   }
 
   detallesSolicitud(solicitudF: SolicitudInfo): void {
