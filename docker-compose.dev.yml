@@ -7,7 +7,7 @@ networks:
 
 services:
  web-server:
-  container_name: wev-server
+  container_name: web-server
   build:
    context: .
   ports:
