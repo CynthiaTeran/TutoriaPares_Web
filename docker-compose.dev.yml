@@ -3,11 +3,13 @@ version: '3.8'
 networks:
   mysql-network:
     name: mysql-network
+    driver: overlay
     external: true
 
 services:
  web-server:
   container_name: web-server
+  restart: always
   build:
    context: .
   ports:
