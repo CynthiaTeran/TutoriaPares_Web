@@ -6,8 +6,8 @@ networks:
     external: true
 
 services:
- webserver2:
-  container_name: webserver2
+ web-server:
+  container_name: wev-server
   build:
    context: .
   ports:
