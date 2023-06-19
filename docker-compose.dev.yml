@@ -1,0 +1,16 @@
+version: '3.8'
+
+networks:
+  mysql-network:
+    name: mysql-network
+    external: true
+
+services:
+ webserver2:
+  container_name: webserver2
+  build:
+   context: .
+  ports:
+   - 80:80
+  networks:
+    - mysql-network
