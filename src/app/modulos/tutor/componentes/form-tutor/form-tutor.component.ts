@@ -21,14 +21,14 @@ export class FormTutorComponent implements OnInit {
   formMateriaT!: FormGroup;
 
   //Variables para mostrar materias
-  materias!: MateriaInfo[];
-  materiaResponse!: MateriaInfoResponse;
+  materias: MateriaInfo[] = [];
+  materiaResponse: MateriaInfoResponse = new MateriaInfoResponse();
 
   //Variables
   calificacion = 0;
   programas: string [] = ["S", "V"];
 
-  materias_lista!: MateriaTutor[];
+  materias_lista: MateriaTutor[] = [];
 
   //Registro a ser insertado
   tutorRegistro: TutorRegistro = new TutorRegistro();
@@ -36,12 +36,8 @@ export class FormTutorComponent implements OnInit {
   constructor(public authservicio: AutentificacionService, public api: APIService, public router: Router) {
     
     this.formTutor = new FormGroup({
-      promedio: new FormControl(0, [
-        Validators.required,
-        Validators.min(0),
-        Validators.max(10),
-      ]),
-      programa:new FormControl('', Validators.required)
+      promedio: new FormControl(0),
+      programa:new FormControl('')
     });
 
     this.formMateriaT = new FormGroup({
@@ -76,7 +72,7 @@ export class FormTutorComponent implements OnInit {
     this.tutorRegistro.materias = this.materias_lista;
 
     //API para insertar un nuevo tutor
-    this.api.registrar_act('registrarAlumno', this.tutorRegistro).subscribe((res: any) => {
+    this.api.registrar_act('registrarTutor', this.tutorRegistro).subscribe((res: any) => {
       const respuesta: Respuesta = res as Respuesta
       if(respuesta.success){//De ser exitoso recarga-refresca
         this.authservicio.actualizarAlumnoTutor();
@@ -98,7 +94,12 @@ export class FormTutorComponent implements OnInit {
   agregarMateriaT(){
 
     let aux1 = this.formMateriaT.get(['materia'])?.value;
-    let aux2 = this.formMateriaT.get(['prom_materia'])?.value;
+    let aux2 = 0;
+    if(this.formMateriaT.get(['prom_materia'])?.value > 10 || this.formMateriaT.get(['prom_materia'])?.value < 0){
+      aux2 = 8;
+    }else{
+      aux2 = this.formMateriaT.get(['prom_materia'])?.value;
+    }
     let band = 1;
 
     this.materias_lista.forEach(obj => {

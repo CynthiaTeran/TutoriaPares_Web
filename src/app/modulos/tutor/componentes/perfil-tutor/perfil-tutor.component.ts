@@ -13,7 +13,7 @@ export class PerfilTutorComponent implements OnInit {
 
   //Variables para Tutores
   materias: MateriaInfo[] = [];
-  materiasResponse!: MateriaInfoResponse;
+  materiasResponse: MateriaInfoResponse = new MateriaInfoResponse();
 
   constructor(public aservicio: AutentificacionService, public router: Router, public api: APIService) { }
 

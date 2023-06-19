@@ -56,6 +56,7 @@ export class AgendaFormTutorComponent implements OnInit {
     this.api.registrar_act('programarSolicitud', solicitudA).subscribe((res: any) => {
       const respuesta: Respuesta = res as Respuesta
       if(respuesta.success){//De ser exitoso recarga-refresca
+        console.log("Exito en insertar");
         if(this.alumnos_invitados.length != 0)
           this.invitados();
         else

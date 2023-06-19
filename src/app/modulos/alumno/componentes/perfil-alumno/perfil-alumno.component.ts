@@ -12,8 +12,8 @@ import { APIService } from 'src/app/servicios/api.service';
 export class PerfilAlumnoComponent implements OnInit {
 
   //Variables para datos del alumno
-  infoG!: InfoGeneral;
-  infoGResponse!: InfoGeneralResponse;
+  infoG: InfoGeneral = new InfoGeneral();
+  infoGResponse: InfoGeneralResponse = new InfoGeneralResponse();
 
   constructor(public aservicio: AutentificacionService, public api: APIService, public router: Router) { }
 
